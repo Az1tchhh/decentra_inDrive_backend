@@ -34,7 +34,7 @@ def model_validation(obj: DriverApplication):
             }
             if response['problem_type'] == 'DENT':
                 loc_photo.problems = True
-                loc_photo.problem_list = 'Вмятина'
+                loc_photo.problem_list = 'Повреждено'
                 loc_photo.save()
 
     #TODO parsing license service call
