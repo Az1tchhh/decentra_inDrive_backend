@@ -10,4 +10,5 @@ docker compose up --build
 чтобы захостить нужен ngrok: 
 
 запуск ngrok
+
 ngrok http 8001
