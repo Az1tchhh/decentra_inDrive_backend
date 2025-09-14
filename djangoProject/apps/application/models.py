@@ -34,6 +34,20 @@ class DriverApplication(DeletedMixin, TimestampMixin):
     surname = models.CharField(max_length=255)
     status = models.CharField(choices=STATUS_CHOICES, max_length=255, default=PENDING_STATUS)
 
+    @property
+    def is_data_valid(self):
+        cause = 'Все в порядке'
+        if not self.license.validated_iin or self.license.validated_iin != self.iin:
+            cause = 'ИИН не совпадает'
+            return cause, False
+        if not self.license.validated_name or self.license.validated_name != self.name:
+            cause = 'Имя водителя не совпадает'
+            return cause, False
+        if not self.license.validated_surname or self.license.validated_surname != self.surname:
+            cause = 'Фамилия водителя не совпадает'
+            return cause, False
+        return cause, True
+
 
 class DriverCarPhoto(DeletedMixin, TimestampMixin):
     application = models.ForeignKey(DriverApplication, on_delete=models.CASCADE, related_name='car_photos')

@@ -55,7 +55,8 @@ class DriverApplicationSerializer(serializers.ModelSerializer):
                   'surname',
                   'license',
                   'car_photos',
-                  'status')
+                  'status',
+                  'is_data_valid')
 
 
 class DriverApplicationCreateSerializer(serializers.ModelSerializer):
